@@ -55,7 +55,8 @@ public class Main {
             //            convert it back to its 2-letter language code when calling translate.
             //            Note: you should use the actual names in the message printed below though,
             //            since the user will see the displayed message.
-            System.out.println(country + " in " + language + " is " + translator.translate(country, lcc.fromLanguage(language)));
+            System.out.println(country + " in " + language + " is " +
+                    translator.translate(country, lcc.fromLanguage(language)));
             System.out.println("Press enter to continue or quit to exit.");
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
@@ -88,8 +89,10 @@ public class Main {
         Scanner s = new Scanner(System.in);
         return s.nextLine();
     }
+
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
-    private static String promptForLanguage(Translator translator, String country) {
+    private static String promptForLanguage(Translator translator, 
+                                            String country) {
         List<String> languages = translator.getCountryLanguages(country);
         LanguageCodeConverter lcc = new LanguageCodeConverter();
         java.util.ArrayList<String> languageNames = new java.util.ArrayList<String>();
