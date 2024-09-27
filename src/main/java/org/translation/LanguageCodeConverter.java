@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
  */
 public class LanguageCodeConverter {
     // Task: pick appropriate instance variables to store the data necessary for this class
-    HashMap <String, String> languageToCode = new HashMap<>();
-    HashMap <String, String> codeToLanguage = new HashMap<>();
+    private Map<String, String> languageToCode = new HashMap<>();
+    private Map<String, String> codeToLanguage = new HashMap<>();
 
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
@@ -36,11 +37,11 @@ public class LanguageCodeConverter {
 
             // Task: use lines to populate the instance variable
             //           tip: you might find it convenient to create an iterator using lines.iterator()
+            String TAB = "\t";
             for (String line : lines.subList(1, lines.size())) {
-                languageToCode.put(line.split("\t")[0], line.split("\t")[1]);
-                codeToLanguage.put(line.split("\t")[1], line.split("\t")[0]);
+                languageToCode.put(line.split(TAB)[0], line.split(TAB)[1]);
+                codeToLanguage.put(line.split(TAB)[1], line.split(TAB)[0]);
             }
-            // Checkstyle: '}' on next line should be alone on a line.
         }
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
