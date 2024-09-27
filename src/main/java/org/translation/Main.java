@@ -20,10 +20,6 @@ public class Main {
      * @param args not used by the program
      */
     public static void main(String[] args) {
-
-        // TODO Task: once you finish the JSONTranslator,
-        //            you can use it here instead of the InLabByHandTranslator
-        //            to try out the whole program!
         Translator translator = new JSONTranslator(null);
         // Translator translator = new InLabByHandTranslator();
 
@@ -94,10 +90,6 @@ public class Main {
     }
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForLanguage(Translator translator, String country) {
-
-        // TODO Task: replace the line below so that we sort the languages alphabetically and print them out; one per line
-        // TODO Task: convert the language codes to the actual language names before sorting
-
         List<String> languages = translator.getCountryLanguages(country);
         LanguageCodeConverter lcc = new LanguageCodeConverter();
         java.util.ArrayList<String> languageNames = new java.util.ArrayList<String>();
