@@ -24,8 +24,8 @@ public class Main {
         // TODO Task: once you finish the JSONTranslator,
         //            you can use it here instead of the InLabByHandTranslator
         //            to try out the whole program!
-        // Translator translator = new JSONTranslator(null);
-        Translator translator = new InLabByHandTranslator();
+        Translator translator = new JSONTranslator(null);
+        // Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
     }
@@ -73,15 +73,22 @@ public class Main {
         List<String> countries = translator.getCountries();
         // TODO Task: replace the following println call, sort the countries alphabetically,
         //            and print them out; one per line
-        //      hint: class Collections provides a static sort method
-        // TODO Task: convert the country codes to the actual country names before sorting
-        System.out.println(countries);
+        // convert to names
+        CountryCodeConverter ccc = new CountryCodeConverter();
+        List<String> fullCountries = new java.util.ArrayList<>();
+        for (String countryCode : countries) {
+            String countryName = ccc.fromCountryCode(countryCode);
+            fullCountries.add(countryName);
+        }
+        // sort countries alphabetically
+        java.util.Collections.sort(fullCountries);
+
+        System.out.println(fullCountries);
 
         System.out.println("select a country from above:");
 
         Scanner s = new Scanner(System.in);
         return s.nextLine();
-
     }
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
