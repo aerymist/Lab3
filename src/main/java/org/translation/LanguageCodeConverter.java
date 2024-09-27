@@ -11,7 +11,6 @@ import java.util.List;
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
-
     // Task: pick appropriate instance variables to store the data necessary for this class
     HashMap <String, String> languageToCode = new HashMap<>();
     HashMap <String, String> codeToLanguage = new HashMap<>();
