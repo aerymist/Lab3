@@ -71,8 +71,6 @@ public class Main {
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
         List<String> countries = translator.getCountries();
-        // TODO Task: replace the following println call, sort the countries alphabetically,
-        //            and print them out; one per line
         // convert to names
         CountryCodeConverter ccc = new CountryCodeConverter();
         List<String> fullCountries = new java.util.ArrayList<>();
@@ -83,14 +81,15 @@ public class Main {
         // sort countries alphabetically
         java.util.Collections.sort(fullCountries);
 
-        System.out.println(fullCountries);
+        for (String fullCountry : fullCountries) {
+            System.out.println(fullCountry);
+        }
 
         System.out.println("select a country from above:");
 
         Scanner s = new Scanner(System.in);
         return s.nextLine();
     }
-
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForLanguage(Translator translator, String country) {
 
