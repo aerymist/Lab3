@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,8 +18,8 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    HashMap<String, String> countryToCode= new HashMap<String, String>();
-    HashMap <String, HashMap <String, String>> codeToLanguages = new HashMap<>();
+    Map<String, String> countryToCode= new HashMap<String, String>();
+    Map <String, HashMap <String, String>> codeToLanguages = new HashMap<>();
 
 
     /**
@@ -45,7 +46,8 @@ public class JSONTranslator implements Translator {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String countryName = jsonObject.getString("en");
                 String countryCode = jsonObject.getString("alpha3");
-                HashMap<String, String> langTranslation = new HashMap<>();
+
+                Map<String, String> langTranslation = new HashMap<>();
                 countryToCode.put(countryName, countryCode);
 
                 JSONArray langName = jsonObject.names();
@@ -67,7 +69,7 @@ public class JSONTranslator implements Translator {
     @Override
     public List<String> getCountryLanguages(String country) {
 
-        HashMap<String, String> languages = codeToLanguages.get(country);
+        Map<String, String> languages = codeToLanguages.get(country);
         List<String> newLangs = new ArrayList<>();
         newLangs.addAll(languages.keySet());
 
@@ -86,7 +88,7 @@ public class JSONTranslator implements Translator {
     @Override
     public String translate(String country, String language) {
 
-        HashMap <String, String> languages = codeToLanguages.get(country);
+        Map <String, String> languages = codeToLanguages.get(country);
         for (String lang: languages.keySet()){
             if (lang.equals(language)){
                 return languages.get(lang);
