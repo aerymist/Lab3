@@ -18,9 +18,8 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    Map <String, String> countryToCode= new HashMap<String, String>();
-    Map <String, Map <String, String>> codeToLanguages = new HashMap<>();
-
+    private Map<String, String> countryToCode = new HashMap<String, String>();
+    private Map<String, Map<String, String>> codeToLanguages = new HashMap<>();
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
@@ -46,17 +45,16 @@ public class JSONTranslator implements Translator {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String countryName = jsonObject.getString("en");
                 String countryCode = jsonObject.getString("alpha3");
-
                 Map<String, String> langTranslation = new HashMap<>();
                 countryToCode.put(countryName, countryCode);
 
                 JSONArray langName = jsonObject.names();
-                for (int j = 0; j < langName.length(); j++){
-                    if (!langName.getString(j).equals("id") && !langName.getString(j).equals("alpha2") && !langName.getString(j).equals("alpha3")){
+                for (int j = 0; j < langName.length(); j++) {
+                    if (!"id".equals(langName.getString(j)) && !"alpha2".equals(langName.getString(j))
+                            && !"alpha3".equals(langName.getString(j))) {
                         langTranslation.put(langName.getString(j), jsonObject.getString(langName.getString(j)));
                     }
                 }
-
                 codeToLanguages.put(countryCode, langTranslation);
             }
 
@@ -68,17 +66,15 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-
         Map<String, String> languages = codeToLanguages.get(country);
-        List<String> newLangs = new ArrayList<>();
-        newLangs.addAll(languages.keySet());
+        List<String> newlangs = new ArrayList<>();
+        newlangs.addAll(languages.keySet());
 
-        return newLangs;
+        return newlangs;
     }
 
     @Override
     public List<String> getCountries() {
-
         ArrayList<String> countries = new ArrayList<>();
 
         countries.addAll(codeToLanguages.keySet());
@@ -88,13 +84,12 @@ public class JSONTranslator implements Translator {
     @Override
     public String translate(String country, String language) {
 
-        Map <String, String> languages = codeToLanguages.get(country);
-        for (String lang: languages.keySet()){
-            if (lang.equals(language)){
+        Map<String, String> languages = codeToLanguages.get(country);
+        for (String lang: languages.keySet()) {
+            if (lang.equals(language)) {
                 return languages.get(lang);
             }
         }
-
         return null;
     }
 }

@@ -37,10 +37,10 @@ public class LanguageCodeConverter {
 
             // Task: use lines to populate the instance variable
             //           tip: you might find it convenient to create an iterator using lines.iterator()
-            String TAB = "\t";
+            String tab = "\t";
             for (String line : lines.subList(1, lines.size())) {
-                languageToCode.put(line.split(TAB)[0], line.split(TAB)[1]);
-                codeToLanguage.put(line.split(TAB)[1], line.split(TAB)[0]);
+                languageToCode.put(line.split(tab)[0], line.split(tab)[1]);
+                codeToLanguage.put(line.split(tab)[1], line.split(tab)[0]);
             }
         }
         catch (IOException | URISyntaxException ex) {
