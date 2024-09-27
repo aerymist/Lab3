@@ -17,8 +17,6 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    // TODO Task: pick appropriate instance variables for this class
-
     HashMap<String, String> countryToCode= new HashMap<String, String>();
     HashMap <String, HashMap <String, String>> codeToLanguages = new HashMap<>();
 
@@ -42,9 +40,6 @@ public class JSONTranslator implements Translator {
             String jsonString = Files.readString(Paths.get(getClass().getClassLoader().getResource(filename).toURI()));
 
             JSONArray jsonArray = new JSONArray(jsonString);
-
-            // TODO Task: use the data in the jsonArray to populate your instance variables
-            //            Note: this will likely be one of the most substantial pieces of code you write in this lab.
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -71,19 +66,17 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Task: return an appropriate list of language codes,
-        //            but make sure there is no aliasing to a mutable object
-        HashMap<String, String> languages = codeToLanguages.get(country);
-        List<String> newlangs = new ArrayList<>();
-        newlangs.addAll(languages.keySet());
 
-        return newlangs;
+        HashMap<String, String> languages = codeToLanguages.get(country);
+        List<String> newLangs = new ArrayList<>();
+        newLangs.addAll(languages.keySet());
+
+        return newLangs;
     }
 
     @Override
     public List<String> getCountries() {
-        // TODO Task: return an appropriate list of country codes,
-        //            but make sure there is no aliasing to a mutable object
+
         ArrayList<String> countries = new ArrayList<>();
 
         countries.addAll(codeToLanguages.keySet());
@@ -92,8 +85,6 @@ public class JSONTranslator implements Translator {
 
     @Override
     public String translate(String country, String language) {
-
-        // TODO Task: complete this method using your instance variables as needed
 
         HashMap <String, String> languages = codeToLanguages.get(country);
         for (String lang: languages.keySet()){
