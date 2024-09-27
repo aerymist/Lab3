@@ -18,8 +18,8 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    Map<String, String> countryToCode= new HashMap<String, String>();
-    Map <String, HashMap <String, String>> codeToLanguages = new HashMap<>();
+    Map <String, String> countryToCode= new HashMap<String, String>();
+    Map <String, Map <String, String>> codeToLanguages = new HashMap<>();
 
 
     /**
